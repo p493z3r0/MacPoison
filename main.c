@@ -2,7 +2,7 @@
 //  main.c
 //
 //
-//  Created by Dominic Järmann on 22.08.15.
+//  Created by MacPoison on 22.08.15.
 //
 //
 
@@ -220,8 +220,8 @@ again:;
         exit(-3);
     }
     
-    printf("Gefundener kslide, @ 0x%016llx\n", kslide);
-    printf("Exploit wird ausgeführt..\n");
+    printf("found kslide, @ 0x%016llx\n", kslide);
+    printf("Exploiting...\n");
     
     kernel_fake_stack_t* stack = calloc(1,sizeof(kernel_fake_stack_t));
     
