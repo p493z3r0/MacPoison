@@ -220,8 +220,8 @@ again:;
         exit(-3);
     }
     
-    printf("Gefundener kslide, @ 0x%016llx\n", kslide);
-    printf("Exploit wird ausgeführt..\n");
+    printf("found kslide, @ 0x%016llx\n", kslide);
+    printf("Executing exploit..\n");
     
     kernel_fake_stack_t* stack = calloc(1,sizeof(kernel_fake_stack_t));
     
