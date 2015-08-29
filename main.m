@@ -2,7 +2,7 @@
 //  main.c
 //
 //
-//  Created by MacPoison on 22.08.15.
+// 
 //
 //
 // This project contains code of Tpwn. Check it out at https://github.com/kpwn/tpwn
