@@ -1,11 +1,6 @@
 //
 //  main.c
-//
-//
-// 
-//
-//
-// This project contains code of Tpwn. Check it out at https://github.com/kpwn/tpwn
+
 
 #include <Foundation/Foundation.h>
 static uint64_t kslide=0;
