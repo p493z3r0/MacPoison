@@ -1,5 +1,8 @@
 //
 //  main.c
+//This Exploit was desperated in 2015 in the inital release of OSX El Captian.
+// Using the knowledge of Luca Todesco, i was able to create a exploit chain, to get full root access using the 
+// Safari web broweser with MacKeeper installed.
 
 
 #include <Foundation/Foundation.h>
